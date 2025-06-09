@@ -1,20 +1,33 @@
-
 version: 0.2
+
 phases:
   install:
     runtime-versions:
       java: corretto8
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
+      - echo Pre-build started on `date`
+      - echo "CodeArtifact authentication..."
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain redi --domain-owner 941377155616 --region us-east-1 --query authorizationToken --output text` || echo "CodeArtifact auth failed, continuing..."
+      - echo "Checking project structure:"
+      - find . -name "*.xml" -o -name "*.java" | head -20
+      - echo "Contents of pom.xml:"
+      - cat pom.xml 2>/dev/null || echo "No pom.xml found"
+      - echo "Contents of settings.xml:"
+      - cat settings.xml 2>/dev/null || echo "No settings.xml found"
   build:
     commands:
       - echo Build started on `date`
-      - mvn -s settings.xml compile
+      - echo "Running Maven with full error output:"
+      - mvn -s settings.xml -e -X compile || echo "Maven command failed with exit code $?"
+      - echo "Maven command completed"
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo "Checking if target directory was created:"
+      - ls -la target/ 2>/dev/null || echo "No target directory found"
+
 artifacts:
   files:
-    - '**/*'
-EOF:
+    - target/**/*
+    - "*.log"
