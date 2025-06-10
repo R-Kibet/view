@@ -1,12 +1,13 @@
 version: 0.0
 os: linux
 files:
-  - source: /target/**/*
-    destination: /usr/share/tomcat/webapps/
+  - source: /
+    destination: /var/www/html
+    overwrite: yes
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
-      timeout: 300
+      timeout: 600
       runas: root
   ApplicationStart:
     - location: scripts/start_server.sh
