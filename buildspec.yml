@@ -8,7 +8,7 @@ phases:
     commands:
       - echo Pre-build started on `date`
       - echo "CodeArtifact authentication..."
-      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain redi --domain-owner 941377155616 --region us-east-1 --query authorizationToken --output text` || echo "CodeArtifact auth failed, continuing..."
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain red-i --domain-owner 941377155616 --region eu-central-1 --query authorizationToken --output text` || echo "CodeArtifact auth failed, continuing..."
       - echo "Checking project structure:"
       - find . -name "*.xml" -o -name "*.java" | head -20
       - echo "Contents of pom.xml:"
