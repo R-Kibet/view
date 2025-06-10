@@ -31,3 +31,5 @@ artifacts:
   files:
     - target/**/*
     - "*.log"
+    - appspec.yml
+    - scripts/**/*
