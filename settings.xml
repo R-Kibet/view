@@ -2,30 +2,30 @@
 <settings >
  <servers>
   <server>
-    <id>red-i-tst1</id>
+    <id>red-i-dev1-rep</id>
     <username>aws</username>
     <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
   </server>
 </servers>
-  <profiles>
+ <profiles>
   <profile>
-    <id>red-i-tst1</id>
+    <id>red-i-dev1-rep</id>
     <activation>
       <activeByDefault>true</activeByDefault>
     </activation>
     <repositories>
       <repository>
-        <id>red-i-tst1</id>
-        <url>https://red-i-941377155616.d.codeartifact.eu-central-1.amazonaws.com/maven/tst1/</url>
+        <id>red-i-dev1-rep</id>
+        <url>https://red-i-941377155616.d.codeartifact.eu-central-1.amazonaws.com/maven/dev1-rep/</url>
       </repository>
     </repositories>
   </profile>
 </profiles>
-  <mirrors>
+ <mirrors>
   <mirror>
-    <id>red-i-tst1</id>
-    <name>red-i-tst1</name>
-    <url>https://red-i-941377155616.d.codeartifact.eu-central-1.amazonaws.com/maven/tst1/</url>
+    <id>red-i-dev1-rep</id>
+    <name>red-i-dev1-rep</name>
+    <url>https://red-i-941377155616.d.codeartifact.eu-central-1.amazonaws.com/maven/dev1-rep/</url>
     <mirrorOf>*</mirrorOf>
   </mirror>
 </mirrors>
